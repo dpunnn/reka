@@ -23,7 +23,7 @@ const ROLE_HOME: Record<Role, string> = {
 
 const DEMO_ACCOUNTS = [
   { icon: Wheat, label: "Pak Slamet (Anggota)", email: "slamet@reka.test" },
-  { icon: ShoppingCart, label: "Rina (Pembeli Kota)", email: "pembeli@reka.test" },
+  { icon: ShoppingCart, label: "Rina (Pembeli)", email: "pembeli@reka.test" },
   { icon: Building2, label: "Budi Santoso (Pengurus)", email: "pengurus@reka.test" },
   { icon: Wallet, label: "Siti Aminah (Kasir)", email: "kasir@reka.test" },
   { icon: Landmark, label: "Dinas Koperasi (Pemkab)", email: "pemkab@reka.test" },
