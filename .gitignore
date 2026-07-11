@@ -1,0 +1,35 @@
+# Python / backend
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.env
+backend/uploads/
+*.pyc
+
+# Node / frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# Env files
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dokumen internal tim (strategi/riset/pitch) — TIDAK dipush ke publik.
+# docker-compose.yml, README.md, dan PANDUAN_MENJALANKAN.md TETAP ikut.
+/BUSINESS_MODEL_DETAIL.txt
+/DESIGN_PROTOTYPE_PROMPT.md
+/DESIGN_PROTOTYPE_PROMPT.txt
+/PIPELINE_KERJA.txt
+/PITCH_DECK_MATERI.txt
+/RISET_VALIDASI_DATA.txt
+/*.pdf
+/*.zip
