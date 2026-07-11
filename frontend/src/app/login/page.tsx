@@ -22,17 +22,17 @@ const ROLE_HOME: Record<Role, string> = {
 };
 
 const DEMO_ACCOUNTS = [
-  { icon: Wheat, label: "Pak Slamet (Anggota)", phone: "081300000001" },
-  { icon: ShoppingCart, label: "Rina (Pembeli Kota)", phone: "081200000003" },
-  { icon: Building2, label: "Budi Santoso (Pengurus)", phone: "081200000001" },
-  { icon: Wallet, label: "Siti Aminah (Kasir)", phone: "081200000002" },
-  { icon: Landmark, label: "Dinas Koperasi (Pemkab)", phone: "081200000004" },
+  { icon: Wheat, label: "Pak Slamet (Anggota)", email: "slamet@reka.test" },
+  { icon: ShoppingCart, label: "Rina (Pembeli Kota)", email: "pembeli@reka.test" },
+  { icon: Building2, label: "Budi Santoso (Pengurus)", email: "pengurus@reka.test" },
+  { icon: Wallet, label: "Siti Aminah (Kasir)", email: "kasir@reka.test" },
+  { icon: Landmark, label: "Dinas Koperasi (Pemkab)", email: "pemkab@reka.test" },
 ];
 
 export default function LoginPage() {
   const router = useRouter();
   const setSession = useAuthStore((s) => s.setSession);
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -42,19 +42,19 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      const res = await api.post("/auth/login", { phone, password });
+      const res = await api.post("/auth/login", { email, password });
       const { access_token, refresh_token, role } = res.data;
       setSession(access_token, refresh_token, role as Role);
       router.push(ROLE_HOME[role as Role] ?? "/");
     } catch {
-      setError("Nomor HP atau password salah");
+      setError("Email atau password salah");
     } finally {
       setLoading(false);
     }
   }
 
-  function fillDemo(demoPhone: string) {
-    setPhone(demoPhone);
+  function fillDemo(demoEmail: string) {
+    setEmail(demoEmail);
     setPassword("password123");
     setError(null);
   }
@@ -97,15 +97,15 @@ export default function LoginPage() {
             <div className="flex flex-col gap-2">
               {DEMO_ACCOUNTS.map((acc) => (
                 <button
-                  key={acc.phone}
+                  key={acc.email}
                   type="button"
-                  onClick={() => fillDemo(acc.phone)}
-                  className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 text-left transition-colors hover:border-blue-200 hover:bg-blue-50"
+                  onClick={() => fillDemo(acc.email)}
+                  className="flex items-center justify-between gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 text-left transition-colors hover:border-blue-200 hover:bg-blue-50"
                 >
                   <span className="inline-flex items-center gap-2 text-[12.5px] font-bold text-slate-900">
-                    <acc.icon className="h-3.5 w-3.5 text-blue-600" /> {acc.label}
+                    <acc.icon className="h-3.5 w-3.5 flex-shrink-0 text-blue-600" /> {acc.label}
                   </span>
-                  <span className="font-mono text-[11px] text-slate-400">{acc.phone}</span>
+                  <span className="truncate font-mono text-[11px] text-slate-400">{acc.email}</span>
                 </button>
               ))}
             </div>
@@ -115,16 +115,17 @@ export default function LoginPage() {
         {/* RIGHT CARD */}
         <div className="w-full max-w-[440px] flex-shrink-0 rounded-[28px] bg-white p-9 shadow-[0_20px_60px_rgba(0,0,0,0.09)]">
           <h2 className="mb-1.5 text-[22px] font-extrabold text-slate-900">Masuk ke akun</h2>
-          <p className="mb-6 text-[13.5px] text-slate-400">Gunakan nomor HP dan password kamu</p>
+          <p className="mb-6 text-[13.5px] text-slate-400">Gunakan email dan password kamu</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="phone">Nomor HP</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="0812xxxxxxxx"
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="nama@email.com"
                 required
               />
             </div>

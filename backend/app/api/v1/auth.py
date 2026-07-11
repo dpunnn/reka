@@ -12,8 +12,8 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/register/anggota", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 def register_anggota(payload: RegisterAnggotaRequest, db: Session = Depends(get_db)):
-    if db.query(User).filter(User.phone == payload.phone).first():
-        raise HTTPException(status_code=400, detail="Nomor HP sudah terdaftar")
+    if db.query(User).filter(User.email == payload.email).first():
+        raise HTTPException(status_code=400, detail="Email sudah terdaftar")
 
     # Fix Sybil/collusion risk (Fase 3F #1): voucher WAJIB anggota yang
     # benar-benar ada DAN sudah VERIFIED oleh Pengurus — bukan sekadar UUID
@@ -34,8 +34,8 @@ def register_anggota(payload: RegisterAnggotaRequest, db: Session = Depends(get_
 
     user = User(
         full_name=payload.full_name,
-        phone=payload.phone,
         email=payload.email,
+        phone=payload.phone,
         hashed_password=hash_password(payload.password),
         role=UserRole.ANGGOTA,
     )
@@ -64,9 +64,9 @@ def register_anggota(payload: RegisterAnggotaRequest, db: Session = Depends(get_
 
 @router.post("/login", response_model=TokenResponse)
 def login(payload: LoginRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.phone == payload.phone).first()
+    user = db.query(User).filter(User.email == payload.email).first()
     if not user or not verify_password(payload.password, user.hashed_password):
-        raise HTTPException(status_code=401, detail="Nomor HP atau password salah")
+        raise HTTPException(status_code=401, detail="Email atau password salah")
 
     access_token = create_access_token(str(user.id), user.role.value)
     refresh_token = create_refresh_token(str(user.id))

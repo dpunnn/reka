@@ -242,13 +242,15 @@ Frontend berjalan di `http://localhost:3000`.
 
 ### Akun Demo (dari seed data)
 
-| Role                                           | No. HP       | Password    |
-| ---------------------------------------------- | ------------ | ----------- |
-| Pengurus                                       | 081200000001 | password123 |
-| Kasir                                          | 081200000002 | password123 |
-| Pembeli                                        | 081200000003 | password123 |
-| Pemkab                                         | 081200000004 | password123 |
-| Anggota (Pak Darto — sudah divouch 2 anggota) | 081300000004 | password123 |
+Login memakai **email** (bukan nomor HP).
+
+| Role                                           | Email               | Password    |
+| ---------------------------------------------- | ------------------- | ----------- |
+| Pengurus                                       | pengurus@reka.test  | password123 |
+| Kasir                                          | kasir@reka.test     | password123 |
+| Pembeli                                        | pembeli@reka.test   | password123 |
+| Pemkab                                         | pemkab@reka.test    | password123 |
+| Anggota (Pak Darto — sudah divouch 2 anggota) | darto@reka.test     | password123 |
 
 ---
 

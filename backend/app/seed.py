@@ -220,7 +220,8 @@ def run():
     # dipegang juri tetap bersih, cuma isi order yang benar-benar mereka buat
     # sendiri saat demo, bukan numpang 360 baris data sintetis.
     pembeli_sistem = User(
-        full_name="[Sistem] Histori Demand Sintetis", phone="080000000000",
+        full_name="[Sistem] Histori Demand Sintetis", email="sistem@reka.test",
+        phone="080000000000",
         hashed_password=hash_password("tidak-dipakai-login"), role=UserRole.PEMBELI,
     )
     db.add_all([pengurus, kasir, pembeli, pemkab, pembeli_sistem])
@@ -247,9 +248,12 @@ def run():
 
     p = {}  # nama -> AnggotaProfile, buat referensi gampang
     for nama, phone, nik, komoditas, kop in anggota_data:
+        # Email login diturunkan dari nama (kata terakhir), mis. "Pak Slamet"
+        # -> slamet@reka.test. Semua nama di anggota_data unik jadi email juga unik.
+        email = f"{nama.split()[-1].lower()}@reka.test"
         user = User(
-            full_name=nama, phone=phone, hashed_password=hash_password("password123"),
-            role=UserRole.ANGGOTA,
+            full_name=nama, email=email, phone=phone,
+            hashed_password=hash_password("password123"), role=UserRole.ANGGOTA,
         )
         db.add(user)
         db.flush()
@@ -348,12 +352,12 @@ def run():
     print("Seed data selesai:")
     print(f"  Koperasi 1 : {koperasi_bogor.nama}")
     print(f"  Koperasi 2 : {koperasi_sukabumi.nama}")
-    print(f"  Pengurus   : {pengurus.phone} / password123")
-    print(f"  Kasir      : {kasir.phone} / password123")
-    print(f"  Pembeli    : {pembeli.phone} / password123")
-    print(f"  Pemkab     : {pemkab.phone} / password123")
-    for nama, phone, *_ in anggota_data:
-        print(f"  Anggota    : {phone} / password123 ({nama})")
+    print(f"  Pengurus   : {pengurus.email} / password123")
+    print(f"  Kasir      : {kasir.email} / password123")
+    print(f"  Pembeli    : {pembeli.email} / password123")
+    print(f"  Pemkab     : {pemkab.email} / password123")
+    for nama, *_ in anggota_data:
+        print(f"  Anggota    : {nama.split()[-1].lower()}@reka.test / password123 ({nama})")
     db.close()
 
 

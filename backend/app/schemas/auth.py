@@ -7,8 +7,8 @@ from app.models.user import UserRole
 
 class RegisterAnggotaRequest(BaseModel):
     full_name: str
-    phone: str
-    email: str | None = None
+    email: str
+    phone: str | None = None
     password: str = Field(min_length=6)
     nik: str
     koperasi_id: uuid.UUID
@@ -19,7 +19,7 @@ class RegisterAnggotaRequest(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    phone: str
+    email: str
     password: str
 
 
@@ -33,8 +33,8 @@ class TokenResponse(BaseModel):
 class UserOut(BaseModel):
     id: uuid.UUID
     full_name: str
-    phone: str
-    email: str | None
+    email: str
+    phone: str | None
     role: UserRole
 
     class Config:

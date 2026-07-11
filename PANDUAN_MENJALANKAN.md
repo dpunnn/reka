@@ -163,29 +163,33 @@ Buka browser ke **http://localhost:3000** — aplikasi REKA siap dipakai.
 ## Akun Demo
 
 Semua akun memakai password yang sama: **`password123`**.
-Login memakai **nomor HP** (bukan email).
+Login memakai **email**.
 
-| Peran | Nomor HP (username) | Password | Untuk melihat |
-|-------|---------------------|----------|---------------|
-| **Pengurus Koperasi** | `081200000001` | `password123` | Approval pinjaman + graph tanggung renteng, QC/Grading, kelola bundling, laporan |
-| **Kasir** | `081200000002` | `password123` | Catat angsuran & simpanan, QC/Grading, Ajudan Digital |
-| **Pembeli Kota** | `081200000003` | `password123` | Marketplace, checkout, **Ajukan Permintaan Beli (Demand Matching)** |
-| **Pemkab** | `081200000004` | `password123` | Dashboard monitoring wilayah, bundling lintas koperasi, audit trail |
-| **Anggota (petani)** | `081300000001` | `password123` | Toko Saya, ajukan pinjaman + skor, dana talangan panen |
+| Peran | Email (username) | Password | Untuk melihat |
+|-------|------------------|----------|---------------|
+| **Pengurus Koperasi** | `pengurus@reka.test` | `password123` | Approval pinjaman + graph tanggung renteng, QC/Grading, kelola bundling, laporan |
+| **Kasir** | `kasir@reka.test` | `password123` | Catat angsuran & simpanan, QC/Grading, Ajudan Digital |
+| **Pembeli Kota** | `pembeli@reka.test` | `password123` | Marketplace, checkout, **Ajukan Permintaan Beli (Demand Matching)** |
+| **Pemkab** | `pemkab@reka.test` | `password123` | Dashboard monitoring wilayah, bundling lintas koperasi, audit trail |
+| **Anggota (petani)** | `slamet@reka.test` | `password123` | Toko Saya, ajukan pinjaman + skor, dana talangan panen |
 
-> Ada 15 akun anggota: `081300000001` sampai `081300000015` (semua `password123`).
-> Untuk mencoba **daftar anggota baru**, gunakan menu "Daftar" di halaman login —
-> pendaftaran akan menunggu verifikasi Pengurus (login sebagai Pengurus untuk menyetujui).
+> Ada 15 akun anggota, emailnya diambil dari nama depan: `slamet@reka.test`, `yuli@reka.test`,
+> `warto@reka.test`, `darto@reka.test`, `ningsih@reka.test`, `joko@reka.test`, `rahayu@reka.test`,
+> `untung@reka.test`, `wati@reka.test`, `karto@reka.test`, `herman@reka.test`, `yanti@reka.test`,
+> `agus@reka.test`, `ratna@reka.test`, `bambang@reka.test` (semua `password123`).
+> Halaman login juga punya tombol **"Akun Demo"** — klik untuk mengisi email & password otomatis.
+> Untuk mencoba **daftar anggota baru**, gunakan menu "Daftar" (pakai email) — pendaftaran
+> menunggu verifikasi Pengurus (login sebagai Pengurus untuk menyetujui).
 
 ---
 
 ## Alur Demo yang Disarankan (5 menit)
 
-1. **Login Anggota** (`081300000001`) → menu *Simpan Pinjam* → lihat **skor kelayakan hybrid** (individual + jaringan) → ajukan pinjaman.
-2. **Login Pengurus** (`081200000001`) → menu *Pinjaman* → lihat **visualisasi graph tanggung renteng** → setujui/tolak.
-3. **Login Kasir** (`081200000002`) → menu *QC / Grading* → beri grade produk (A/B/C) supaya masuk pool bundling.
-4. **Login Pembeli** (`081200000003`) → menu *Ajukan Permintaan* → ketik komoditas (mis. `cabai merah`, jumlah 50) → lihat **Demand Matching** mencocokkan otomatis ke stok koperasi.
-5. **Login Pemkab** (`081200000004`) → dashboard monitoring + **audit trail** lintas koperasi.
+1. **Login Anggota** (`slamet@reka.test`) → menu *Simpan Pinjam* → lihat **skor kelayakan hybrid** (individual + jaringan) → ajukan pinjaman.
+2. **Login Pengurus** (`pengurus@reka.test`) → menu *Pinjaman* → lihat **visualisasi graph tanggung renteng** → setujui/tolak.
+3. **Login Kasir** (`kasir@reka.test`) → menu *QC / Grading* → beri grade produk (A/B/C) supaya masuk pool bundling.
+4. **Login Pembeli** (`pembeli@reka.test`) → menu *Ajukan Permintaan* → ketik komoditas (mis. `cabai merah`, jumlah 50) → lihat **Demand Matching** mencocokkan otomatis ke stok koperasi.
+5. **Login Pemkab** (`pemkab@reka.test`) → dashboard monitoring + **audit trail** lintas koperasi.
 
 ---
 

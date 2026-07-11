@@ -28,8 +28,9 @@ class User(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     full_name: Mapped[str] = mapped_column(String(150))
-    email: Mapped[str | None] = mapped_column(String(150), unique=True, nullable=True)
-    phone: Mapped[str] = mapped_column(String(20), unique=True)
+    # Email = kredensial login utama (wajib, unik). Phone jadi opsional/kontak saja.
+    email: Mapped[str] = mapped_column(String(150), unique=True)
+    phone: Mapped[str | None] = mapped_column(String(20), nullable=True)
     hashed_password: Mapped[str] = mapped_column(String(255))
     role: Mapped[UserRole] = mapped_column(Enum(UserRole))
     is_active: Mapped[bool] = mapped_column(default=True)

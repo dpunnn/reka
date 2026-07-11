@@ -37,7 +37,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
 
   const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nik, setNik] = useState("");
   const [koperasiId, setKoperasiId] = useState("");
@@ -60,7 +60,7 @@ export default function RegisterPage() {
     try {
       await api.post("/auth/register/anggota", {
         full_name: fullName,
-        phone,
+        email,
         password,
         nik,
         koperasi_id: koperasiId,
@@ -69,7 +69,7 @@ export default function RegisterPage() {
       });
       setSubmitted(true);
     } catch {
-      setError("Pendaftaran gagal — cek kembali data yang diisi (nomor HP/NIK mungkin sudah terdaftar).");
+      setError("Pendaftaran gagal — cek kembali data yang diisi (email/NIK mungkin sudah terdaftar).");
     } finally {
       setLoading(false);
     }
@@ -153,8 +153,8 @@ export default function RegisterPage() {
               <Input value={fullName} onChange={(e) => setFullName(e.target.value)} required />
             </div>
             <div className="space-y-2">
-              <Label>Nomor HP</Label>
-              <Input value={phone} onChange={(e) => setPhone(e.target.value)} required />
+              <Label>Email</Label>
+              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nama@email.com" required />
             </div>
             <div className="space-y-2">
               <Label>Password</Label>
